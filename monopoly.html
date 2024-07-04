@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Monopoly by Mohammad</title>
+    <link rel="stylesheet" href="monopoly.css" />
+    <script src="monopoly.js"></script>
+  </head>
+  <body>
+    <header>Monopoly by Mohammad</header>
+    <div id="gameboard">
+      <section suite="1111" id="go" class="corner go" val="-200">Go</section>
+      <section
+        suite="1110"
+        id="mediterranean"
+        class="reg brown z"
+        xland="0"
+        owned="false"
+        val="60"
+      >
+        Mediterranean Avenue
+      </section>
+      <section suite="1109" id="cc1" class="reg cc" val="-1">
+        Community Chest
+      </section>
+      <section
+        suite="1108"
+        id="baltic"
+        class="reg brown z"
+        xland="0"
+        owned="false"
+        val="60"
+      >
+        Baltic Avenue
+      </section>
+      <section suite="1107" id="incometax" class="reg tax" xland="0" val="200">
+        Income Tax
+      </section>
+      <section
+        suite="1106"
+        id="readingrr"
+        class="reg rr z"
+        owned="false"
+        val="200"
+      >
+        Reading Railroad
+      </section>
+      <section
+        suite="1105"
+        id="oriental"
+        class="reg lightblue z"
+        xland="0"
+        owned="false"
+        val="100"
+      >
+        Oriental Avenue
+      </section>
+      <section suite="1104" id="chance1" class="reg chance" val="-1">
+        Chance
+      </section>
+      <section
+        suite="1103"
+        id="vermont"
+        class="reg lightblue z"
+        xland="0"
+        owned="false"
+        val="100"
+      >
+        Vermont Avenue
+      </section>
+      <section
+        suite="1102"
+        id="connecticut"
+        class="reg lightblue z"
+        xland="0"
+        owned="false"
+        val="120"
+      >
+        Connecticut Avenue
+      </section>
+      <section suite="1101" id="jail" class="corner jail" val="50">
+        Jail
+      </section>
+      <section
+        suite="1001"
+        id="stcharles"
+        class="reg purple z"
+        xland="0"
+        owned="false"
+        val="140"
+      >
+        St. Charles Place
+      </section>
+      <section
+        suite="0901"
+        id="electric"
+        class="reg utility z"
+        owned="false"
+        val="150"
+      >
+        Electric Company
+      </section>
+      <section
+        suite="0801"
+        id="states"
+        class="reg purple z"
+        xland="0"
+        owned="false"
+        val="140"
+      >
+        States Avenue
+      </section>
+      <section
+        suite="0701"
+        id="virginia"
+        class="reg purple z"
+        xland="0"
+        owned="false"
+        val="160"
+      >
+        Virginia Avenue
+      </section>
+      <section
+        suite="0601"
+        id="pennsylvaniarr"
+        class="reg rr z"
+        xland="0"
+        owned="false"
+        val="200"
+      >
+        Pennsylvania Railroad
+      </section>
+      <section
+        suite="0501"
+        id="stjames"
+        class="reg orange z"
+        xland="0"
+        owned="false"
+        val="180"
+      >
+        St. James Place
+      </section>
+      <section suite="0401" id="cc2" class="reg cc" val="-1">
+        Community Chest
+      </section>
+      <section
+        suite="0301"
+        id="tennessee"
+        class="reg orange z"
+        xland="0"
+        owned="false"
+        val="180"
+      >
+        Tennessee Avenue
+      </section>
+      <section
+        suite="0201"
+        id="newyork"
+        class="reg orange z"
+        xland="0"
+        owned="false"
+        val="200"
+      >
+        New York Avenue
+      </section>
+      <section suite="0101" id="freeparking" class="corner parking" val="-11">
+        Free Parking
+      </section>
+      <section
+        suite="0102"
+        id="kentucky"
+        class="reg red z"
+        xland="0"
+        owned="false"
+        val="220"
+      >
+        Kentucky Avenue
+      </section>
+      <section suite="0103" id="chance2" class="reg chance" val="-1">
+        Chance
+      </section>
+      <section
+        suite="0104"
+        id="indiana"
+        class="reg red z"
+        xland="0"
+        owned="false"
+        val="220"
+      >
+        Indiana Avenue
+      </section>
+      <section
+        suite="0105"
+        id="illinois"
+        class="reg red z"
+        xland="0"
+        owned="false"
+        val="240"
+      >
+        Illinois Avenue
+      </section>
+      <section suite="0106" id="borr" class="reg rr z" owned="false" val="200">
+        B. & O. Railroad
+      </section>
+      <section
+        suite="0107"
+        id="atlantic"
+        class="reg yellow z"
+        xland="0"
+        owned="false"
+        val="260"
+      >
+        Atlantic Avenue
+      </section>
+      <section
+        suite="0108"
+        id="ventnor"
+        class="reg yellow z"
+        xland="0"
+        owned="false"
+        val="260"
+      >
+        Ventnor Avenue
+      </section>
+      <section
+        suite="0109"
+        id="water"
+        class="reg utility z"
+        owned="false"
+        val="150"
+      >
+        Water Works
+      </section>
+      <section
+        suite="0110"
+        id="marvin"
+        class="reg yellow z"
+        xland="0"
+        owned="false"
+        val="280"
+      >
+        Marvin Gardens
+      </section>
+      <section suite="0111" id="gotojail" class="corner goToJail" val="-10">
+        Go to Jail
+      </section>
+      <section
+        suite="0211"
+        id="pacific"
+        class="reg green z"
+        xland="0"
+        owned="false"
+        val="300"
+      >
+        Pacific Avenue
+      </section>
+      <section
+        suite="0311"
+        id="northcarolina"
+        class="reg green z"
+        xland="0"
+        owned="false"
+        val="300"
+      >
+        North Carolina Avenue
+      </section>
+      <section suite="0411" id="cc3" class="reg cc" val="-1">
+        Community Chest
+      </section>
+      <section
+        suite="0511"
+        id="pennsylvania"
+        class="reg green z"
+        xland="0"
+        owned="false"
+        val="320"
+      >
+        Pennsylvania Avenue
+      </section>
+      <section
+        suite="0611"
+        id="shortlinerr"
+        class="reg rr z"
+        owned="false"
+        val="200"
+      >
+        Short Line
+      </section>
+      <section suite="0711" id="chance3" class="reg chance" val="-1">
+        Chance
+      </section>
+      <section
+        suite="0811"
+        id="parkplace"
+        class="reg blue z"
+        xland="0"
+        owned="false"
+        val="350"
+      >
+        Park Place
+      </section>
+      <section suite="0911" id="luxurytax" class="reg tax" val="100">
+        Luxury Tax
+      </section>
+      <section
+        suite="1011"
+        id="boardwalk"
+        class="reg blue z"
+        xland="0"
+        owned="false"
+        val="400"
+      >
+        Boardwalk
+      </section>
+      <aside id="monopoly" class="middle">
+        <div class="buffer"></div>
+        <div id="title">
+          <h1>Monopoly</h1>
+          <h2><button id="RollDice">Roll Dice</button></h2>
+        </div>
+        <div id="grid">
+          <div id="player1div">
+            PLAYER 1 (YOU)
+            <div id="player1amt" class="amount"></div>
+            <div id="player1"><img src="" height="" id="player01" /></div>
+          </div>
+          <div id="player2div">
+            PLAYER 2 (NOT YOU)
+            <div id="player2amt" class="amount"></div>
+            <div id="player2"><img src="" height="" id="player02" /></div>
+          </div>
+        </div>
+
+        <div id="diceroll">
+          <figure id="die1">
+            <img class="die" src="" height="" id="die01" />
+          </figure>
+          <figure id="die2">
+            <img class="die" src="" height="" id="die02" />
+          </figure>
+        </div>
+      </aside>
+    </div>
+  </body>
+</html>
