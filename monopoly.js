@@ -30,7 +30,8 @@ var p1Money = 3000;
 var p2Money = 3000;
 var total = 0;
 var flag = 0;
-
+var rrCountP1 = 0;
+var rrCountP2 = 0;
 const takeAChanceText = ["Second Place in Beauty Contest: $10", "Bank Pays You Dividend of $50", "Repair your Properties. You owe $250", "Speeding Fine: $15", "Holiday Fund Matures: Receive $100", "Pay Hospital Fees: $100"];
 const takeAChanceMoney = [10, 50, -250, -15, 100, -100];
 
@@ -181,7 +182,135 @@ function PlayerMove(locP, player) {
   }
 
   locP = loc;
-  //locP = Interact(secAccess, locP, player);
+  locP = Interact(secAccess, locP, player);
 
   return locP;
+}
+
+function Interact(secAccess, locP, player) {
+    // lands on unowned property
+    if (secAccess[locP].classList.contains("z") && secAccess[locP].attributes.owned.value != "true"){
+        secAccess[locP].attributes.owned.value = "true";
+        secAccess[locP].style.color = "white";
+        if (flag == 0) {
+            secAccess[locP].style.background = "teal";
+            p1Money -= parseInt(secAccess[locP].attributes.val.value);
+        }
+        else if (flag == 1) {
+            secAccess[locP].style.background = "maroon";
+            p2Money -= parseInt(secAccess[locP].attributes.val.value);
+        }
+
+        // railroads
+        if (secAccess[locP].classList.contains("rr")) {
+            if (flag == 0) {
+                if (rrCountP1 + rrCountP2 <= 4) {
+                    rrCountP1 += 1;
+                    console.log(rrCountP1);
+                }
+            }
+            else if (flag == 1) {
+                if (rrCountP1 + rrCountP2 <= 4) {
+                    rrCountP2 += 1;
+                }
+            }
+        }
+    }
+    // chance or community chest
+    else if (secAccess[locP].classList.contains("cc") || secAccess[locP].classList.contains("chance")) {
+        var rand = Math.floor(Math.random() * 6);
+        if (flag == 0) {
+            p1Money += takeAChanceMoney[rand];
+        }
+        else if (flag == 1) {
+            p2Money += takeAChanceMoney[rand];
+        }
+        alert(takeAChanceText[rand]);
+    }
+    // free parking
+    else if ((secAccess[locP].classList.contains("parking"))) {
+        alert("You landed on Free Parking!");
+    }
+    // go
+    else if ((secAccess[locP].classList.contains("go"))) {
+
+    }
+    // jail
+    else if ((secAccess[locP].classList.contains("jail"))){
+        if (flag == 0) {
+            p1Money -= parseInt(secAccess[locP].attributes.val.value);
+        }
+        else if (flag == 1) {
+            p2Money -= parseInt(secAccess[locP].attributes.val.value);
+        }
+        alert("You landed in JAIL! Pay $50")
+    }
+    // go to jail
+    else if (secAccess[locP].classList.contains("goToJail")) {
+        locP = 10;
+        secAccess[locP].appendChild(player);
+
+        if (flag == 0) {
+            p1Money -= parseInt(secAccess[locP].attributes.val.value);
+        }
+        else if (flag == 1) {
+            p2Money -= parseInt(secAccess[locP].attributes.val.value);
+        }
+        alert("GO TO JAIL! Pay $50");
+    }
+    // tax 
+    else if (secAccess[locP].classList.contains("tax")) {
+        if (flag == 0) {
+            p1Money -= parseInt(secAccess[locP].attributes.val.value);
+        }
+        else if (flag == 1) {
+            p2Money -= parseInt(secAccess[locP].attributes.val.value);
+        }
+        console.log("TAX: " + secAccess[locP].attributes.val.value);
+    }
+    // land on owned property
+    else if (secAccess[locP].attributes.owned.value == "true") {
+        // railroad
+        if (secAccess[locP].classList.contains("rr")) {
+            if (flag == 0) {
+                p1Money -= 25 * rrCountP2;
+                p2Money += 25 * rrCountP2;
+                console.log("Railroad rent: " + 25 * rrCountP2);
+            }
+            else if (flag == 1) {
+                p2Money -= 25 * rrCountP1;
+                p1Money += 25 * rrCountP1;
+                console.log("Railroad rent: " + 25 * rrCountP1);
+            }
+        }
+        // utility 
+        else if (secAccess[locP].classList.contains("utility")) {
+            if (flag == 0) {
+                p1Money -= total * 5;
+                p2Money += total * 5;
+            }
+            else if (flag == 1) {
+                p2Money -= total * 5;
+                p1Money += total * 5;
+            }
+            console.log("Utility rent: " + total * 5);
+        }
+        // coloured (increment of 10%)
+        else {
+            secAccess[locP].attributes.xland.value = parseInt(secAccess[locP].attributes.xland.value) + 1;
+
+            if (flag == 0) {
+                p1Money -= Math.ceil(parseInt(secAccess[locP].attributes.val.value) * 0.1 * 1.2 ** (parseInt(secAccess[locP].attributes.xland.value - 1)));
+                p2Money += Math.ceil(parseInt(secAccess[locP].attributes.val.value) * 0.1 * 1.2 ** (parseInt(secAccess[locP].attributes.xland.value - 1)));
+            }
+            else if (flag == 1) {
+                p2Money -= Math.ceil(parseInt(secAccess[locP].attributes.val.value) * 0.1 * 1.2 ** (parseInt(secAccess[locP].attributes.xland.value - 1)));
+                p1Money += Math.ceil(parseInt(secAccess[locP].attributes.val.value) * 0.1 * 1.2 ** (parseInt(secAccess[locP].attributes.xland.value - 1)));
+            }
+
+            console.log("Name: " + secAccess[locP].attributes.id.value + " Times landed: " + secAccess[locP].attributes.xland.value + " Rent paid out: " + Math.ceil(parseInt(secAccess[locP].attributes.val.value) * 0.1 * 1.2 ** (parseInt(secAccess[locP].attributes.xland.value - 1))));
+        }
+    }
+
+    return locP;
 }
